@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+typedef pair<ll, ll> pi;
+#define mp make_pair
+#define pb push_back
+#define F first
+#define S second
+#define forn(i, n) for (int i = 1; i <= int(n); i++)
+#define sz(v) (int)v.size()
+
+ll turnOn(ll x, int pos) {
+    return x | (1LL<<pos);
+}
+
+ll turnOff(ll x, int pos) {
+    return x & ~(1LL<<pos);
+}
+
+void solve()
+{
+    ll n; cin >> n;
+    ll mask=0;
+    ll ans[2*n+1];
+    for(int i=0;i<n;i++) mask=turnOn(mask, i);
+    forn(i, 2*n) ans[i]=mask;
+    forn(i, n)
+    {
+        ans[i]=turnOff(ans[i], i-1);
+    }
+    forn(i, 2*n) cout << ans[i] << " ";
+    cout << "\n";
+}
+
+int main()
+{
+//freopen("input.txt", "r", stdin);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);cout.tie(NULL);
+    int T; T=1; 
+    //cin >> T;
+    while(T--)
+    {
+        solve();
+    }
+}

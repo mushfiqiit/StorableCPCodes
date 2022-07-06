@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+typedef pair<ll, ll> pi;
+#define mp make_pair
+#define pb push_back
+#define F first
+#define S second
+#define forn(i, n) for (int i = 1; i <= int(n); i++)
+#define sz(v) (int)v.size()
+#define mx 1000001
+ll sv[mx], d[mx];
+ll M; 
+void init()
+{
+    memset(sv, 0, sizeof sv);
+    for(int i=1;i<=M;i++)
+    {
+        ll tmp=d[i];
+        sv[tmp]++;
+    }
+    for(int i=mx-1;i>=1;i--)
+    {
+        if(sv[i])
+        {
+            ll tmp=sv[i];
+            for(int j=2*i;j<mx;j+=i)
+            {
+                sv[j]+=tmp;
+            }
+        }
+    }
+}
+
+void solve()
+{
+    cin >> M;
+    forn(i, M) cin >> d[i];
+    init();
+    ll Q; cin >> Q;
+    ll c;
+    while(Q--)
+    {
+        cin >> c;
+        cout << M-sv[c] << "\n";
+    }
+}
+
+int main()
+{
+//freopen("input.txt", "r", stdin);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);cout.tie(NULL);
+    int T; T=1; 
+    //cin >> T;
+    while(T--)
+    {
+        solve();
+    }
+}
